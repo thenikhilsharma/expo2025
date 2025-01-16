@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 // import React, { useState } from 'react';
@@ -18,9 +18,9 @@ export default function Register() {
     name: "",
     // phone: '',
     email: "",
-    startUpSector: "",
-    headquarter: "",
-    linkedin: "",
+    startupSector: "",
+    startupHQ: "",
+    Linkedin: "",
     description: "",
   });
 
@@ -45,10 +45,15 @@ export default function Register() {
     }
 
     try {
-      setLoading(true);
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Send data to the server
-      const response = await registerUser(formData);
+      setLoading(true);
 
       setMessage(response.message);
     } catch (error) {
@@ -82,7 +87,7 @@ export default function Register() {
               placeholder="Enter your Startup Name"
               type="text"
               name="name"
-              value={formData.name}
+              value={formData.startupName}
               onChange={handleChange}
             />
             <span style={{ color: "red" }}>{errors.name}</span>
@@ -111,7 +116,7 @@ export default function Register() {
               placeholder="Sector of your Startup"
               type="text"
               name="startUpSector"
-              value={formData.startUpSector}
+              value={formData.startupSector}
               onChange={handleChange}
             />
           </div>
@@ -121,10 +126,10 @@ export default function Register() {
             </label>
             <input
               className="text-black"
-              placeholder="place of Startup Headquater"
+              placeholder="Place of Startup Headquater"
               type="text"
               name="headquarter"
-              value={formData.headquarter}
+              value={formData.startupHQ}
               onChange={handleChange}
             />
           </div>
@@ -138,7 +143,7 @@ export default function Register() {
               placeholder="website or linkedin"
               type="text"
               name="linkedin"
-              value={formData.linkedin}
+              value={formData.Linkedin}
               onChange={handleChange}
             />
           </div>

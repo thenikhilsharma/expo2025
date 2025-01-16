@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ecellLogoWhite from "../assets/ecell_logo.png";
+// import ecellLogoWhite from "../assets/ecell_logo.png";
+import ecellLogoWhite from '@/assets/ecell-white-img.webp'
 
 const Footer = () => {
   return (
